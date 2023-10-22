@@ -13,12 +13,16 @@ $(function () {
     function saveTask(){
             $('.saveBtn').on("click", function(){
             var taskHr = $(this).parent().attr('id');
+            var textarea = $(this).siblings('.description');
             var description = $(this).siblings('.description').val();
-
-            localStorage.setItem(taskHr, description);
-
+            //var taskArr = [taskHr, description]
+            //localStorage.setItem(taskArr, JSON.stringify(taskArr));
+            localStorage.setItem(taskHr, JSON.stringify(description));
             console.log('clicked')
+         
+
             ;})
+
 ;}
     
     // TODO: Add code to apply the past, present, or future class to each time
@@ -26,6 +30,52 @@ $(function () {
     // attribute of each time-block be used to conditionally add or remove the
     // past, present, and future classes? How can Day.js be used to get the
     // current hour in 24-hour time?
+    var currentHour = dayjs().format('H');
+    
+
+    console.log(currentHour);
+  // On Load Time Block Color 
+    function onLoadColor(){
+    $('.time-block' ).each(function( index ) {
+       var timeID = parseInt(this.id);
+        var past = timeID < currentHour;
+        var present = timeID == currentHour;
+        var future = timeID > currentHour;
+       
+        if (present){
+            $(this).addClass('present');
+        }
+        else if (past){
+            $(this).addClass('past');
+        }
+        else {
+            $(this).addClass('future');
+        }
+        console.log (present)
+        console.log( index + ": " +  parseInt(this.id));
+      });
+    }
+    //Update Time Block Colors
+    function updateColor(){
+        $('.time-block' ).each(function( index ) {
+           var timeID = parseInt(this.id);
+            var past = timeID < currentHour;
+            var present = timeID == currentHour;
+            var future = timeID > currentHour;
+           
+            if (present){
+                $(this).removeClass('future').addClass('present');
+            }
+            else if (past){
+                $(this).removeClass('present').addClass('past');
+            }
+           
+          });
+        }
+
+ 
+
+
     //
     // TODO: Add code to get any user input that was saved in localStorage and set
     // the values of the corresponding textarea elements. HINT: How can the id
@@ -35,8 +85,9 @@ $(function () {
     var currentDay = dayjs().format('MMM D, YYYY');
     $('#currentDay').text(currentDay)
 
-
-   saveTask()
+    onLoadColor();
+    updateColor();
+    saveTask();
 
 
   });
