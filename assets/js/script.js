@@ -24,4 +24,3 @@ $(function () {
     $('#currentDay').text(currentDay)
 
   });
-  
