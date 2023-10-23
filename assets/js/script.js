@@ -22,6 +22,18 @@ $(function () {
             ;})
             ;}
 
+ // clears local storage at midnight, so user can get a clean scheduler on window refresh on a new day           
+    function dailyClear(){
+        var currentHrMin = dayjs().format('H:mm');
+        //var clearTime = dayjs(hour(0).minute(30)).format('H:mm');
+        console.log(currentHrMin)
+        if( currentHrMin == '23:59'){
+            localStorage.clear()
+        };
+        return;
+        
+    }
+
 
 // Get task and print in corresponding time block
           $('.time-block').each(function() {
@@ -40,6 +52,7 @@ $(function () {
    
     var currentHour = dayjs().format('H');
     console.log(currentHour);
+
 
     // On Load Time Block Color 
     function onLoadColor(){
@@ -91,6 +104,7 @@ $(function () {
     onLoadColor();
     updateColor();
     saveTask();
+    dailyClear();
 
 
   });
