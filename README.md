@@ -2,9 +2,7 @@
 
 This scheduler is meant to help the user create type out their daily tasks in thier appropriate time blocks.
 
-
-
-
+![Work Day Scheduler screenshot](./assets/images/Screenshot%202023-10-22%20203132.png)
 
 
 ## Features
