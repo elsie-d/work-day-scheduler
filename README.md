@@ -14,6 +14,8 @@ The date at the top of the scheduler is automatically updated to help the user k
 The daily scheduler is set up to visually assit the user in assigning colors to the time blocks.
 A grey time block indicates that hour has passed, while red represents the current hours, and green represents future hours of the day.
 
+## Blank scheduler at start of day
+Local storage is set to clear at midnight, meaning that on a new day and window refresh the user will see a blank scheduler.
 
 
 ## Functionality
